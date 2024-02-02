@@ -5,4 +5,20 @@
   height: 100vh;
   background-color: #000;
   color: #fff;
+
+  .body {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      font-size: 35px;
+      gap: 12;
+    }
+  }
 }
