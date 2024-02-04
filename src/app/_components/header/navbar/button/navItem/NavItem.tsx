@@ -9,7 +9,7 @@ const NavItem = () => {
       <div className={styles.body}>
         <div className={styles.nav}>
           <div className={styles.header}>
-            <p>Navigation</p>
+            <span>Navigation</span>
           </div>
           {navArr.map((item, index) => {
             return <Link key={`L_${index}`} data={{ ...item, index }} />;
