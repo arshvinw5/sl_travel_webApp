@@ -2,6 +2,7 @@ import styles from './styles.module.scss';
 import Link from '../link/LinkItem';
 
 import { navArr } from '../../navArr';
+import { motion } from 'framer-motion';
 
 const NavItem = () => {
   return (
