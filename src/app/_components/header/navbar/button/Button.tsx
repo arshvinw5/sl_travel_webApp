@@ -5,6 +5,7 @@ import NavItem from './navItem/NavItem';
 
 import { motion } from 'framer-motion';
 import { perspectiveTextProps } from '@/app/_dto/navbar_button_dto';
+import { AnimatePresence } from 'framer-motion';
 
 const Button = () => {
   const { isActive, setIsActive, button } = useAnim();
@@ -26,7 +27,7 @@ const Button = () => {
           </motion.div>
         </div>
       </div>
-      {isActive && <NavItem />}
+      <AnimatePresence mode='wait'>{isActive && <NavItem />}</AnimatePresence>
     </>
   );
 };

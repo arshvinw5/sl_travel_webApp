@@ -4,6 +4,11 @@ import { useState } from 'react';
 const useAnim = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
+  const [selectedLink, setSelectedLink] = useState({
+    isActive: false,
+    index: 0,
+  });
+
   const button = {
     menu: {
       x: isActive ? '100%' : '0',
@@ -15,7 +20,7 @@ const useAnim = () => {
     },
   };
 
-  return { isActive, setIsActive, button };
+  return { isActive, setIsActive, button, selectedLink, setSelectedLink };
 };
 
 export default useAnim;
