@@ -46,3 +46,21 @@ export const blur = {
     transition: { duration: 0.3 },
   },
 };
+
+export const slideFooter = {
+  initial: {
+    x: '80px',
+    opacity: 0,
+  },
+  enter: (i: number) => ({
+    x: '0',
+    opacity: 1,
+
+    transition: { duration: 1.5, ease: [0.83, 0, 0.17, 1], delay: i * 0.3 },
+  }),
+  exit: (i: number) => ({
+    x: '80px',
+    opacity: 0,
+    transition: { duration: 1, ease: [0.83, 0, 0.17, 1], delay: i * 0.1 },
+  }),
+};

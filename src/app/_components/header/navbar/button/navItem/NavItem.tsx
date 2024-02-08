@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 import Link from '../link/LinkItem';
 import useAnim from '../../useAnim';
+import Footer from '../footer/footer';
 
 import { navArr } from '../../navArr';
 import { motion } from 'framer-motion';
@@ -41,6 +42,7 @@ const NavItem = () => {
             );
           })}
         </div>
+        <Footer />
       </div>
     </motion.div>
   );
