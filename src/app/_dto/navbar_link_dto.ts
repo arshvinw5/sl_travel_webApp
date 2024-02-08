@@ -12,5 +12,6 @@ type T_navItem = {
       index: number;
     }>
   >;
+  setIsActive: Dispatch<SetStateAction<boolean>>;
 };
 export type { T_navItem };

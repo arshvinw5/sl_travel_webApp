@@ -6,6 +6,7 @@ import NavItem from './navItem/NavItem';
 import { motion } from 'framer-motion';
 import { perspectiveTextProps } from '@/app/_dto/navbar_button_dto';
 import { AnimatePresence } from 'framer-motion';
+import { useRef } from 'react';
 
 const Button = () => {
   const { isActive, setIsActive, button } = useAnim();

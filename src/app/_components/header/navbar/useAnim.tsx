@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+// import { usePathname } from 'next/navigation';
 
 const useAnim = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -8,6 +9,28 @@ const useAnim = () => {
     isActive: false,
     index: 0,
   });
+
+  // const pathName = usePathname();
+
+  // useEffect(() => {
+  //   setIsActive(false);
+  // }, [pathName]);
+
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutSide = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsActive(false);
+        console.log(`Click out side : ${isActive}`);
+      }
+    };
+    document.addEventListener('click', handleClickOutSide);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutSide);
+    };
+  }, [setIsActive, isActive]);
 
   const button = {
     menu: {
@@ -20,7 +43,14 @@ const useAnim = () => {
     },
   };
 
-  return { isActive, setIsActive, button, selectedLink, setSelectedLink };
+  return {
+    isActive,
+    setIsActive,
+    button,
+    selectedLink,
+    setSelectedLink,
+    menuRef,
+  };
 };
 
 export default useAnim;
