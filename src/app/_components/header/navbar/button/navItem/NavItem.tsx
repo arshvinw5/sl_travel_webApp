@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import Link from '../link/LinkItem';
 import useAnim from '../../useAnim';
-import Footer from '../footer/footer';
+import Footer from '../footer/Footer';
 
 import { navArr } from '../../navArr';
 import { motion } from 'framer-motion';

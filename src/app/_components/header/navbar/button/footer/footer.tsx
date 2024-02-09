@@ -6,7 +6,7 @@ import { socialMediaIcons } from './iconArr';
 import { slideFooter } from '../../animation';
 import { SocialMediaIcon } from '@/app/_dto/navbar_footer_dto';
 
-const footer = () => {
+const Footer = () => {
   const getIcon = (icon: SocialMediaIcon[]) => {
     let iconElements: JSX.Element[] = [];
     icon.forEach(({ name, icon: Icon }, i) => {
@@ -36,7 +36,7 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;
 
 // In this code, { name, icon: Icon } is
 // destructuring the icon object. It means “get the
