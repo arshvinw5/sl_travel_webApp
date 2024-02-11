@@ -1,51 +1,53 @@
 import styles from './styles.module.scss';
-import Link from '../link/LinkItem';
+import LinkItem from '../link/LinkItem';
 import useAnim from '../../useAnim';
 import Footer from '../footer/Footer';
+import ClickOutSide from './clickOutSide/ClickOutSide';
 
 import { navArr } from '../../navArr';
 import { motion } from 'framer-motion';
 import { menuSlide } from '../../animation';
 
 const NavItem = () => {
-  const { selectedLink, setSelectedLink, menuRef, setIsActive } = useAnim();
+	const { selectedLink, setSelectedLink, setIsActive } = useAnim();
 
-  return (
-    <motion.div
-      ref={menuRef}
-      variants={menuSlide}
-      initial='initial'
-      animate='enter'
-      exit='exit'
-      className={styles.menu}
-    >
-      <div className={styles.body}>
-        <div className={styles.nav}>
-          <motion.div
-            variants={menuSlide}
-            initial='initial'
-            animate='enter'
-            exit='exit'
-            className={styles.header}
-          >
-            <span>Navigation</span>
-          </motion.div>
-          {navArr.map((item, index) => {
-            return (
-              <Link
-                key={`L_${index}`}
-                data={{ ...item, index }}
-                selectedLink={selectedLink}
-                setSelectedLink={setSelectedLink}
-                setIsActive={setIsActive}
-              />
-            );
-          })}
-        </div>
-        <Footer />
-      </div>
-    </motion.div>
-  );
+	return (
+		<ClickOutSide>
+			<motion.div
+				variants={menuSlide}
+				initial='initial'
+				animate='enter'
+				exit='exit'
+				className={styles.menu}
+			>
+				<div className={styles.body}>
+					<div className={styles.nav}>
+						<motion.div
+							variants={menuSlide}
+							initial='initial'
+							animate='enter'
+							exit='exit'
+							className={styles.header}
+						>
+							<span>Navigation</span>
+						</motion.div>
+						{navArr.map((item, index) => {
+							return (
+								<LinkItem
+									key={`L_${index}`}
+									data={{ ...item, index }}
+									selectedLink={selectedLink}
+									setSelectedLink={setSelectedLink}
+									setIsActive={setIsActive}
+								/>
+							);
+						})}
+					</div>
+					<Footer />
+				</div>
+			</motion.div>
+		</ClickOutSide>
+	);
 };
 
 export default NavItem;

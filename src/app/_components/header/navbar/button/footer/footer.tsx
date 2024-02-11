@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import styles from './styles.module.scss';
+import useAnim from '../../useAnim';
 
 import { motion } from 'framer-motion';
 import { socialMediaIcons } from './iconArr';
@@ -7,33 +8,33 @@ import { slideFooter } from '../../animation';
 import { SocialMediaIcon } from '@/app/_dto/navbar_footer_dto';
 
 const Footer = () => {
-  const getIcon = (icon: SocialMediaIcon[]) => {
-    let iconElements: JSX.Element[] = [];
-    icon.forEach(({ name, icon: Icon }, i) => {
-      iconElements.push(
-        <motion.div
-          key={name}
-          custom={i}
-          variants={slideFooter}
-          initial='initial'
-          animate='enter'
-          exit='exit'
-        >
-          <a>
-            <Icon />
-          </a>
-        </motion.div>
-      );
-    });
-    return iconElements;
-  };
-  return (
-    <div>
-      <motion.div className={styles.footer}>
-        {getIcon(socialMediaIcons)}
-      </motion.div>
-    </div>
-  );
+	const { setSelectedLink } = useAnim();
+
+	const getIcon = (icon: SocialMediaIcon[]) => {
+		let iconElements: JSX.Element[] = [];
+		icon.forEach(({ icon: Icon, href }, i) => {
+			iconElements.push(
+				<motion.div
+					key={`icon_${i}`}
+					custom={i}
+					variants={slideFooter}
+					initial='initial'
+					animate='enter'
+					exit='exit'
+				>
+					<a href={href}>
+						<Icon />
+					</a>
+				</motion.div>
+			);
+		});
+		return iconElements;
+	};
+	return (
+		<motion.div className={styles.footer}>
+			{getIcon(socialMediaIcons)}
+		</motion.div>
+	);
 };
 
 export default Footer;

@@ -9,7 +9,6 @@ export default function Magnetic({ children }: MagneticProps): ReactElement {
 	const magnetic = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
-		console.log(children);
 		const xTo = gsap.quickTo(magnetic.current, 'x', {
 			duration: 1,
 			ease: 'elastic.out(1, 0.3)',
@@ -21,7 +20,8 @@ export default function Magnetic({ children }: MagneticProps): ReactElement {
 
 		magnetic.current?.addEventListener('mousemove', (e: MouseEvent) => {
 			const { clientX, clientY } = e;
-			const { height, width, left, top } = magnetic.current?.getBoundingClientRect() as DOMRect;
+			const { height, width, left, top } =
+				magnetic.current?.getBoundingClientRect() as DOMRect;
 			const x = clientX - (left + width / 2);
 			const y = clientY - (top + height / 2);
 			xTo(x * 0.35);

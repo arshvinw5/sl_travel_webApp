@@ -16,22 +16,6 @@ const useAnim = () => {
 	//   setIsActive(false);
 	// }, [pathName]);
 
-	const menuRef = useRef<HTMLDivElement | null>(null);
-
-	useEffect(() => {
-		const handleClickOutSide = (e: MouseEvent) => {
-			if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-				setIsActive(false);
-				console.log(`Click out side : ${isActive}`);
-			}
-		};
-		document.addEventListener('click', handleClickOutSide);
-
-		return () => {
-			document.removeEventListener('click', handleClickOutSide);
-		};
-	}, [setIsActive, isActive]);
-
 	const button = {
 		menu: {
 			x: isActive ? '100%' : '0',
@@ -49,7 +33,6 @@ const useAnim = () => {
 		button,
 		selectedLink,
 		setSelectedLink,
-		menuRef,
 	};
 };
 

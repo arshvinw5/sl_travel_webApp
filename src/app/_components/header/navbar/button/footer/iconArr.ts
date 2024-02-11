@@ -6,24 +6,29 @@ import { FaLinkedinIn } from 'react-icons/fa';
 import { SocialMediaIcon } from '@/app/_dto/navbar_footer_dto';
 
 export const socialMediaIcons: SocialMediaIcon[] = [
-  {
-    name: 'Google',
-    icon: FaGoogle,
-  },
-  {
-    name: 'LinkedIn',
-    icon: FaLinkedinIn,
-  },
-  {
-    name: 'Facebook',
-    icon: FaFacebookF,
-  },
-  {
-    name: 'Instagram',
-    icon: SiInstagram,
-  },
-  {
-    name: 'Twitter',
-    icon: BsTwitterX,
-  },
+	{
+		name: 'Google',
+		icon: FaGoogle,
+		href: 'https://www.google.com/',
+	},
+	{
+		name: 'LinkedIn',
+		icon: FaLinkedinIn,
+		href: 'https://lk.linkedin.com/',
+	},
+	{
+		name: 'Facebook',
+		icon: FaFacebookF,
+		href: 'https://www.facebook.com/',
+	},
+	{
+		name: 'Instagram',
+		icon: SiInstagram,
+		href: 'https://www.instagram.com/',
+	},
+	{
+		name: 'Twitter',
+		icon: BsTwitterX,
+		href: 'https://twitter.com/?lang=en',
+	},
 ];

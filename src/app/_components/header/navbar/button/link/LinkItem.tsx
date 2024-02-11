@@ -5,7 +5,12 @@ import { T_navItem } from '@/app/_dto/navbar_link_dto';
 import { motion } from 'framer-motion';
 import { slide, blur } from '../../animation';
 
-const LinkItem = ({ data, selectedLink, setSelectedLink, setIsActive }: T_navItem) => {
+const LinkItem = ({
+	data,
+	selectedLink,
+	setSelectedLink,
+	setIsActive,
+}: T_navItem) => {
 	const { key, title, href, index } = data;
 
 	const getChars = (title: string) => {
@@ -46,7 +51,11 @@ const LinkItem = ({ data, selectedLink, setSelectedLink, setIsActive }: T_navIte
 				<motion.p
 					variants={blur}
 					initial='initial'
-					animate={selectedLink.isActive && selectedLink.index !== index ? 'open' : 'close'}
+					animate={
+						selectedLink.isActive && selectedLink.index !== index
+							? 'open'
+							: 'close'
+					}
 				>
 					{getChars(title)}
 				</motion.p>
