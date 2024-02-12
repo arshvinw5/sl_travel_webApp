@@ -8,8 +8,6 @@ import { slideFooter } from '../../animation';
 import { SocialMediaIcon } from '@/app/_dto/navbar_footer_dto';
 
 const Footer = () => {
-	const { setSelectedLink } = useAnim();
-
 	const getIcon = (icon: SocialMediaIcon[]) => {
 		let iconElements: JSX.Element[] = [];
 		icon.forEach(({ icon: Icon, href }, i) => {

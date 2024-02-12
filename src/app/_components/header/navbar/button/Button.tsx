@@ -7,9 +7,23 @@ import Magnetic from '@/app/_components/magnetic/Magnetic';
 import { motion } from 'framer-motion';
 import { perspectiveTextProps } from '@/app/_dto/navbar_button_dto';
 import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 
 const Button = () => {
 	const { isActive, setIsActive, button } = useAnim();
+
+	useEffect(() => {
+		const listener = (event: any) => {
+			const { state } = event.detail;
+			setIsActive(state);
+		};
+
+		document.addEventListener('_click_outside_', listener);
+
+		return () => {
+			document.removeEventListener('_click_outside_', listener);
+		};
+	}, [setIsActive]);
 
 	return (
 		<>
@@ -45,3 +59,5 @@ function PerspectiveText({ label }: perspectiveTextProps) {
 		</div>
 	);
 }
+//the reason why I have useEffect to change the state instead of it in navItem
+//because we always have to use useState in parent component not the child component

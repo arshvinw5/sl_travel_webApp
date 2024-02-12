@@ -5,16 +5,21 @@ interface ClickOutSideProps {
 	children: ReactElement;
 }
 
+const clickOutsideCustomEvent = new CustomEvent('_click_outside_', {
+	detail: { state: false },
+});
+
 const ClickOutSide = ({ children }: ClickOutSideProps): ReactElement => {
-	const { isActive, setIsActive } = useAnim();
+	const { setIsActive } = useAnim();
 
 	const menuRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		const handleClickOutSide = (e: MouseEvent) => {
 			if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+				// we are target the elements in menuRef only  -> e,target
 				setIsActive(false);
-				console.log(`Clicked Out Side.`);
+				document.dispatchEvent(clickOutsideCustomEvent);
 			}
 		};
 
