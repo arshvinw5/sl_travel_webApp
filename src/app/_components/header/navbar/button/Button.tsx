@@ -23,6 +23,8 @@ const Button = () => {
 		return () => {
 			document.removeEventListener('_click_outside_', listener);
 		};
+
+		// we use this event listener to catch the _click_outside which is dispatch from CustomEvent
 	}, [setIsActive]);
 
 	return (
