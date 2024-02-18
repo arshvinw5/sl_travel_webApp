@@ -14,10 +14,9 @@ const LinkItem = ({
 	const { key, title, href, index } = data;
 
 	const getChars = (title: string) => {
-		let chars: React.ReactNode[] = [];
-		title.split('').forEach((char, i) => {
-			const content = char === ' ' ? '\u00A0' : char;
-			chars.push(
+		return title.split('').map((char, i) => {
+			let content = char === ' ' ? '\u00A0' : char;
+			return (
 				<motion.span
 					key={`c_${i}`}
 					custom={[i * 0.05, (title.length - i) * 0.03]}
@@ -30,7 +29,6 @@ const LinkItem = ({
 				</motion.span>
 			);
 		});
-		return chars;
 	};
 
 	return (
