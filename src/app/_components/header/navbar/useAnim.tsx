@@ -7,7 +7,8 @@ const useAnim = () => {
 
 	const [selectedLink, setSelectedLink] = useState({
 		isActive: false,
-		index: 0,
+		index: -1,
+		type: '',
 	});
 
 	// const pathName = usePathname();

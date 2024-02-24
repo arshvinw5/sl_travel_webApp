@@ -2,25 +2,46 @@ import styles from './styles.module.scss';
 
 import { motion } from 'framer-motion';
 import { socialMediaIcons } from './iconArr';
-import { slideFooter } from '../../animation';
+import { slideFooter, blur } from '../../animation';
+import { T_Footer } from '@/app/_dto/navbar_footer_dto';
 
-const Footer = () => {
-	const iconElements = socialMediaIcons.map(({ href, icon: Icon, name }, i) => {
-		return (
-			<motion.div
-				key={`icon_${i}`}
-				custom={i}
-				variants={slideFooter}
-				initial='initial'
-				animate='enter'
-				exit='exit'
-			>
-				<a href={href}>
-					<Icon />
-				</a>
-			</motion.div>
-		);
-	});
+const Footer = ({ selectedLink, setSelectedLink }: T_Footer) => {
+	const iconElements = socialMediaIcons.map(
+		({ href, icon: Icon, name }, index) => {
+			return (
+				<motion.div
+					key={`icon_${index}`}
+					custom={index}
+					variants={slideFooter}
+					initial='initial'
+					animate='enter'
+					exit='exit'
+					onMouseOver={() => {
+						setSelectedLink({ isActive: true, index, type: 'icon' });
+					}}
+					onMouseLeave={() => {
+						setSelectedLink({ isActive: false, index: -1, type: '' });
+					}}
+				>
+					<a href={href}>
+						<motion.div
+							className={styles.footer}
+							variants={blur}
+							initial='initial'
+							animate={
+								selectedLink.isActive &&
+								!(selectedLink.type === 'icon' && selectedLink.index === index)
+									? 'open'
+									: 'close'
+							}
+						>
+							<Icon />
+						</motion.div>
+					</a>
+				</motion.div>
+			);
+		}
+	);
 	return <div className={styles.footer}>{iconElements}</div>;
 };
 
@@ -36,3 +57,8 @@ export default Footer;
 //   renaming icon to Icon, you ensure that it’s treated as a React
 //    component. This way, each
 // icon in your socialMediaIcons array will be correctly rendered.
+
+//this reason we need type to identify the index of the array since
+//there is two difference arrays overlap with state mentioned index
+
+// let cities = objects.map(({ address: { city } }) => city);

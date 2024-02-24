@@ -15,6 +15,7 @@ const ClickOutSide = ({ children }: ClickOutSideProps): ReactElement => {
 
 			if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
 				// we are target the elements in menuRef only  -> e,target
+				//[above code we are asking to target elements outside of the navItem]
 				document.dispatchEvent(clickOutsideCustomEvent);
 			}
 		};

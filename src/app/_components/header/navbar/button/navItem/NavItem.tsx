@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { menuSlide } from '../../animation';
 
 const NavItem = () => {
-	const { selectedLink, setSelectedLink, setIsActive } = useAnim();
+	const { selectedLink, setSelectedLink } = useAnim();
 
 	return (
 		<ClickOutSide>
@@ -38,12 +38,14 @@ const NavItem = () => {
 									data={{ ...item, index }}
 									selectedLink={selectedLink}
 									setSelectedLink={setSelectedLink}
-									setIsActive={setIsActive}
 								/>
 							);
 						})}
 					</div>
-					<Footer />
+					<Footer
+						selectedLink={selectedLink}
+						setSelectedLink={setSelectedLink}
+					/>
 				</div>
 			</motion.div>
 		</ClickOutSide>

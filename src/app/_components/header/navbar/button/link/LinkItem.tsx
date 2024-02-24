@@ -5,12 +5,7 @@ import { T_navItem } from '@/app/_dto/navbar_link_dto';
 import { motion } from 'framer-motion';
 import { slide, blur } from '../../animation';
 
-const LinkItem = ({
-	data,
-	selectedLink,
-	setSelectedLink,
-	setIsActive,
-}: T_navItem) => {
+const LinkItem = ({ data, selectedLink, setSelectedLink }: T_navItem) => {
 	const { key, title, href, index } = data;
 
 	const getChars = (title: string) => {
@@ -36,21 +31,22 @@ const LinkItem = ({
 			<Link
 				href={href}
 				onMouseOver={() => {
-					setSelectedLink({ isActive: true, index });
+					setSelectedLink({ isActive: true, index, type: 'link' });
 				}}
 				onMouseLeave={() => {
-					setSelectedLink({ isActive: false, index });
+					setSelectedLink({ isActive: false, index: -1, type: '' });
 				}}
 				onClick={(e) => {
 					e.stopPropagation();
-					setIsActive(false);
+					// to stop listen to event listener
 				}}
 			>
 				<motion.p
 					variants={blur}
 					initial='initial'
 					animate={
-						selectedLink.isActive && selectedLink.index !== index
+						selectedLink.isActive &&
+						!(selectedLink.type === 'link' && selectedLink.index === index)
 							? 'open'
 							: 'close'
 					}
