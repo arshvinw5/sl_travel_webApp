@@ -1,19 +1,45 @@
 import Image from 'next/image';
+import styles from './styles.module.scss';
 
 const Hero = () => {
-  return (
-    <div className='relative w-full h-screen'>
-      <div>
-        <Image
-          src='/images/hero/Travel.jpg'
-          alt='Hero_Image'
-          fill={true}
-          className='object-cover h-screen overflow-hidden'
-        />
-        <div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
-      </div>
-    </div>
-  );
+	return (
+		<div className='relative w-full h-screen'>
+			<div>
+				<Image
+					src='/images/hero/Travel.jpg'
+					alt='Hero_Image'
+					fill={true}
+					className='object-cover h-screen overflow-hidden'
+				/>
+				<div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
+			</div>
+			<div className='absolute top-0 w-full h-full flex flex-col justify-center text-white'>
+				<div className='md:left-[5%] max-w-[1000px] m-auto absolute p-5'>
+					<h1 className='font-bold text-2xl md:text-4xl drop-shadow-2xl'>
+						Welcome to the resplendent island of Sri Lanka.
+					</h1>
+					<p className='drop-shadow-2xl max-w-[900px] py-5 text-sm md:text-base'>
+						Embark on a journey of discovery in Sri Lanka, an island paradise
+						nestled in the azure waters of the Indian Ocean. From the sun-kissed
+						beaches of the south, the majestic peaks of the central highlands,
+						to the historical ruins of ancient kingdoms, every corner of this
+						island nation has a story to tell. The aroma of Ceylon tea estates,
+						the sight of elephants roaming freely in national parks, and the
+						taste of unique local cuisine, all contribute to the diverse
+						tapestry that is Sri Lanka. So, immerse yourself in the beauty and
+						charm of Sri Lanka, a place where serendipity awaits at every turn.
+					</p>
+					<button> Tour Packages</button>
+				</div>
+			</div>
+			<div className={styles.slideContainer}>
+				<div className={styles.slide}>
+					<p>Welcome and Enjoy your adventure with us. -</p>
+					<p>Welcome and Enjoy your adventure with us. -</p>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Hero;

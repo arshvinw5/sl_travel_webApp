@@ -1,0 +1,22 @@
+.slideContainer {
+	position: absolute;
+	top: calc(100vh - 250px);
+
+	.slide {
+		position: relative;
+		white-space: nowrap;
+		display: flex;
+
+		p {
+			margin: 0;
+			color: #fff;
+			font-size: 10vw;
+			font-weight: 300;
+		}
+
+		p :nth-of-type(2) {
+			position: absolute;
+			left: 100%;
+		}
+	}
+}

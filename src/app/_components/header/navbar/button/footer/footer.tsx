@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { socialMediaIcons } from './iconArr';
 import { slideFooter, blur } from '../../animation';
 import { T_Footer } from '@/app/_dto/navbar_footer_dto';
+import Magnetic from '@/app/_components/magnetic/Magnetic';
 
 const Footer = ({ selectedLink, setSelectedLink }: T_Footer) => {
 	const iconElements = socialMediaIcons.map(
