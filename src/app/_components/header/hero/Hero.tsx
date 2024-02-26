@@ -1,9 +1,30 @@
+'use client';
 import Image from 'next/image';
 import styles from './styles.module.scss';
+import gsap from 'gsap';
+import { useEffect, useRef } from 'react';
 
 const Hero = () => {
+	const firstText = useRef(null);
+	const secondText = useRef(null);
+	let xPercent = 0;
+	let direction = -1;
+
+	const anim = () => {
+		xPercent <= -100 ? (xPercent = 0) : null;
+		xPercent >= 0 ? xPercent - 100 : null;
+		gsap.set(firstText.current, { xPercent: xPercent });
+		gsap.set(secondText.current, { xPercent: xPercent });
+		xPercent += 0.03 * direction;
+		requestAnimationFrame(anim);
+	};
+
+	useEffect(() => {
+		requestAnimationFrame(anim);
+	}, []);
+
 	return (
-		<div className='relative w-full h-screen'>
+		<div className='relative w-full h-screen overflow-hidden'>
 			<div>
 				<Image
 					src='/images/hero/Travel.jpg'
@@ -34,8 +55,8 @@ const Hero = () => {
 			</div>
 			<div className={styles.slideContainer}>
 				<div className={styles.slide}>
-					<p>Welcome and Enjoy your adventure with us. -</p>
-					<p>Welcome and Enjoy your adventure with us. -</p>
+					<p ref={firstText}>Enjoy your adventure with us.-</p>
+					<p ref={secondText}>Enjoy your adventure with us.-</p>
 				</div>
 			</div>
 		</div>
