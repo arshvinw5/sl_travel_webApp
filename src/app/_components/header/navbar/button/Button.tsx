@@ -12,10 +12,22 @@ import { useEffect } from 'react';
 const Button = () => {
 	const { isActive, setIsActive, button } = useAnim();
 
+	const handleNav = () => {
+		setIsActive(!isActive);
+		!isActive
+			? (document.body.style.overflow = 'hidden')
+			: (document.body.style.overflow = 'scroll');
+		// // this function hide the scroll when menu stat is true
+		// //default value is false if menu is true then it's hidden
+	};
+
 	useEffect(() => {
 		const listener = (event: any) => {
 			const { state } = event.detail;
 			setIsActive(state);
+			state
+				? (document.body.style.overflow = 'hidden')
+				: (document.body.style.overflow = 'scroll');
 		};
 
 		document.addEventListener('_click_outside_', listener);
@@ -30,12 +42,7 @@ const Button = () => {
 	return (
 		<>
 			<Magnetic>
-				<div
-					onClick={() => {
-						setIsActive(!isActive);
-					}}
-					className={styles.button}
-				>
+				<div onClick={handleNav} className={styles.button}>
 					<div className={styles.slider}>
 						<motion.div variants={button} animate='menu' className={styles.el}>
 							<PerspectiveText label='Menu' />

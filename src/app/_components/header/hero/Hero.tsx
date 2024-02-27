@@ -46,7 +46,7 @@ const Hero = () => {
 					src='/images/hero/Travel.jpg'
 					alt='Hero_Image'
 					fill={true}
-					className='object-cover h-screen overflow-hidden'
+					className='relative object-cover h-screen overflow-hidden'
 				/>
 				<div className='bg-black/30 absolute top-0 left-0 w-full h-screen' />
 			</div>
