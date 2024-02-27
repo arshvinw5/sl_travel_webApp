@@ -2,26 +2,42 @@
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import gsap from 'gsap';
+
 import { useEffect, useRef } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Hero = () => {
 	const firstText = useRef(null);
 	const secondText = useRef(null);
+	const slider = useRef(null);
+	const direction = useRef(-1);
 	let xPercent = 0;
-	let direction = -1;
-
-	const anim = () => {
-		xPercent <= -100 ? (xPercent = 0) : null;
-		xPercent >= 0 ? xPercent - 100 : null;
-		gsap.set(firstText.current, { xPercent: xPercent });
-		gsap.set(secondText.current, { xPercent: xPercent });
-		xPercent += 0.03 * direction;
-		requestAnimationFrame(anim);
-	};
 
 	useEffect(() => {
-		requestAnimationFrame(anim);
+		gsap.registerPlugin(ScrollTrigger);
+		requestAnimationFrame(animation);
+
+		gsap.to(slider.current, {
+			scrollTrigger: {
+				trigger: document.documentElement,
+				start: 0,
+				end: window.innerHeight,
+				scrub: 0.24,
+				onUpdate: (e) => (direction.current = e.direction * -1),
+			},
+			x: '-300px',
+		});
 	}, []);
+
+	const animation = () => {
+		xPercent <= -100 ? (xPercent = 0) : null;
+		xPercent > 0 ? (xPercent = -100) : null;
+
+		gsap.set(firstText.current, { xPercent: xPercent });
+		gsap.set(secondText.current, { xPercent: xPercent });
+		xPercent += 0.03 * direction.current;
+		requestAnimationFrame(animation);
+	};
 
 	return (
 		<div className='relative w-full h-screen overflow-hidden'>
@@ -54,7 +70,7 @@ const Hero = () => {
 				</div>
 			</div>
 			<div className={styles.slideContainer}>
-				<div className={styles.slide}>
+				<div ref={slider} className={styles.slide}>
 					<p ref={firstText}>Enjoy your adventure with us.-</p>
 					<p ref={secondText}>Enjoy your adventure with us.-</p>
 				</div>
