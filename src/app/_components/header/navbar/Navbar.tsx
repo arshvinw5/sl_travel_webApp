@@ -7,7 +7,7 @@ const Navbar = () => {
 			<h1 className='absolute text-white font-bold text-2xl z-20 cursor-pointer top-[25px] left-[25px]'>
 				ArshvinW5.
 			</h1>
-			<div className='fixed top-[20px] right-[25px]'>
+			<div className='absolute top-[20px] right-[25px]'>
 				<Button />
 			</div>
 		</div>

@@ -8,9 +8,12 @@ import { motion } from 'framer-motion';
 import { perspectiveTextProps } from '@/app/_dto/navbar_button_dto';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { stat } from 'fs';
 
 const Button = () => {
 	const { isActive, setIsActive, button } = useAnim();
+	const pathName = usePathname();
 
 	const handleNav = () => {
 		setIsActive(!isActive);
@@ -25,9 +28,7 @@ const Button = () => {
 		const listener = (event: any) => {
 			const { state } = event.detail;
 			setIsActive(state);
-			state
-				? (document.body.style.overflow = 'hidden')
-				: (document.body.style.overflow = 'scroll');
+			document.body.style.overflow = 'scroll';
 		};
 
 		document.addEventListener('_click_outside_', listener);
@@ -38,6 +39,13 @@ const Button = () => {
 
 		// we use this event listener to catch the _click_outside which is dispatch from CustomEvent
 	}, [setIsActive]);
+
+	useEffect(() => {
+		setIsActive(false);
+		document.body.style.overflow = 'scroll';
+	}, [setIsActive, pathName]);
+
+	// we have use usePathname to close the menu when we click [active] link
 
 	return (
 		<>

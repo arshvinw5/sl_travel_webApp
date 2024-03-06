@@ -1,6 +1,6 @@
 'use client';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-// import { usePathname } from 'next/navigation';
 
 const useAnim = () => {
 	const [isActive, setIsActive] = useState<boolean>(false);
@@ -10,12 +10,6 @@ const useAnim = () => {
 		index: -1,
 		type: '',
 	});
-
-	// const pathName = usePathname();
-
-	// useEffect(() => {
-	//   setIsActive(false);
-	// }, [pathName]);
 
 	const button = {
 		menu: {
