@@ -5,6 +5,7 @@ export default function Home() {
 		<main>
 			<Hero />
 			<div className='h-screen' />
+			<div className='h-screen' />
 		</main>
 	);
 }

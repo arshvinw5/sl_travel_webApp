@@ -7,9 +7,9 @@ import { useEffect, useRef } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Hero = () => {
-	const firstText = useRef(null);
-	const secondText = useRef(null);
-	const slider = useRef(null);
+	const firstText = useRef<HTMLDivElement | null>(null);
+	const secondText = useRef<HTMLDivElement | null>(null);
+	const slider = useRef<HTMLDivElement | null>(null);
 	const direction = useRef(-1);
 	let xPercent = 0;
 
@@ -30,6 +30,11 @@ const Hero = () => {
 	}, []);
 
 	const animation = () => {
+		if (!firstText.current || !secondText.current) {
+			// Stop the animation if the elements don't exist
+			return;
+		}
+
 		xPercent <= -100 ? (xPercent = 0) : null;
 		xPercent > 0 ? (xPercent = -100) : null;
 
