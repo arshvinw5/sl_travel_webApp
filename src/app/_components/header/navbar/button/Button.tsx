@@ -2,7 +2,6 @@
 import styles from './styles.module.scss';
 import useAnim from '../useAnim';
 import NavItem from './navItem/NavItem';
-import Magnetic from '@/app/_components/magnetic/Magnetic';
 import gsap from 'gsap';
 
 import { motion } from 'framer-motion';
@@ -48,9 +47,16 @@ const Button = () => {
 
 	// we have use usePathname to close the menu when we click [active] link
 
+	//to make the menu button appear wih the scroll.
+
 	const scrollBtn = useRef(null);
 
 	useLayoutEffect(() => {
+		if (!scrollBtn.current) {
+			// Stop the animation if the elements don't exist
+			return;
+		}
+
 		gsap.registerPlugin(ScrollTrigger);
 
 		gsap.to(scrollBtn.current, {
